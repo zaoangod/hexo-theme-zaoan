@@ -1,0 +1,9 @@
+<% if (post.link){ %>
+    <a class="title" href="<%- url_for(post.link) %>" target="_blank"><%= post.title %></a>
+<% } else if (post.title){ %>
+    <% if (!is_post()){ %>
+        <a class="title" href="<%- url_for(post.path) %>"><%= post.title %></a>
+    <% } else { %>
+        <h1 class="title"><%= post.title %></h1>
+    <% } %>
+<% } %>

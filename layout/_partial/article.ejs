@@ -1,0 +1,31 @@
+<article class="row">
+    <% var excerpt = post.excerpt; %>
+    <!-- 标题.分类.时间 -->
+    <header class="post-title-box">
+        <%- partial('post/title') %>
+        <div class="post-meta">
+            <%- partial('post/category') %>
+            <%- partial('post/date') %>
+        </div>
+    </header>
+    <!-- 内容 -->
+    <section class="post-content">
+        <% if (excerpt){ %>
+            <%- strip_html(post.excerpt) -%>
+        <% } else { %>
+            <%- post.content -%>
+        <% } %>
+    </section>
+    <footer class="page-footer-box">
+        <div class="tag-box">
+            <img src="/img/icon/icon-tag.svg">
+            <%- partial('post/tag') %>
+        </div>
+        <% if (is_home()){ %>
+            <a class="more" href="<%- url_for(post.path) %>" target="_self">阅读全文 >></a>
+        <% } %>
+    </footer>
+</article>
+<% if (!is_home()){ %>
+    <%- partial('post/nav') %>
+<% } %>

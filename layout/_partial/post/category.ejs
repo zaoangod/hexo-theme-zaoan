@@ -1,0 +1,6 @@
+<!-- 分类标签 -->
+<% if (post.categories){ %>
+    <% post.categories.forEach(item => { %>
+        <a class="category-item" href="<%- url_for(item.path) %>">[<%= item.name %>]</a>
+    <% }) %>
+<% } %>

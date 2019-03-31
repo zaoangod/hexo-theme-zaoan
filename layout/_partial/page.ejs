@@ -1,0 +1,50 @@
+<!-- 首页 -->
+<% if (is_home()){ %>
+    <div class="post-container">
+        <% page.posts.each(function(post){ %>
+            <%- partial('article', {post: post, status: 'home'}); %>
+        <% }) %>
+    </div>
+<% } %>
+<!--文章页面-->
+<% if(is_post()) { %>
+    <div class="post-container">
+        <%- partial('article', {post: page, status: 'post'}); %>
+    </div>
+<% } %>
+<!--归档页-->
+<% if(is_archive()) { %>
+    <div class="archives-box">
+        <% var diff %>
+        <% page.posts.forEach(function(post){ %>
+            <% var year = post.date.year(); %>
+            <% if(year !== diff) { %>
+                <% diff = year %>
+                <h1 class="archive-year"><%= year %></h1>
+            <% } %>
+            <div class="archive-post">
+                <span class="archive-post-time"><%= date(post.date, 'MM-DD') %></span>
+                <a href="<%- url_for(post.path) %>" class="archive-post-link"><%= post.title %></a>
+            </div>
+        <% }) %>
+    </div>
+<% } %>
+
+<!-- 标签页 -->
+<% if(is_tag()) { %>
+    标签页面
+<% } %>
+<!-- 分类归档页面 -->
+<% if(is_category()) { %>
+    分类归档页面
+<% } %>
+<!-- index分页 -->
+<% if ((page.total * 1) > 0){ %>
+    <div class="paginator">
+        <%- paginator({
+            space: '<i>..</i>',
+            prev_text: '<img src="/img/icon/prev.svg">',
+            next_text: '<img src="/img/icon/next.svg">'
+        }) %>
+    </div>
+<% } %>

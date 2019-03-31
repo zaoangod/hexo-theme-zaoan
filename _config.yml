@@ -1,0 +1,26 @@
+# Header
+menu:
+  Home: /
+  Archives: /archives
+  #Tags: /tags
+
+# SubNav
+subnav:
+  github: "#"
+  weibo: "#"
+  zhihu: "#"
+  #qq: "#"
+  #weixin: "#"
+  #jianshu: "#"
+  #douban: "#"
+  #segmentfault: "#"
+  #bilibili: "#"
+  #acfun: "#"
+  #mail: "mailto:litten225@qq.com"
+  #facebook: "#"
+  #google: "#"
+  #twitter: "#"
+  #linkedin: "#"
+
+# 填写头像地址
+avatar: img/head.png

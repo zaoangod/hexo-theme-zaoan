@@ -1,0 +1,6 @@
+<!-- 分类标签 -->
+<% if (post.tags){ %>
+    <% post.tags.forEach(item => { %>
+        <a class="tag-item" href="<%- url_for(item.path) %>"><%= item.name %></a>
+    <% }) %>
+<% } %>

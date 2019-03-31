@@ -1,0 +1,45 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="dns-prefetch" href="<%= config.url %>">
+    <% if (config.keywords) { %>
+        <meta name="keywords" content="<%= config.keywords %>"/>
+    <% } %>
+    <meta name="author" content="<%= config.author %>"/>
+    <meta name="description" content="<%= config.description %>"/>
+    <%
+    var title = page.title;
+    var isArchive = is_archive();
+    var isCategory = is_category();
+    var isTag = is_tag();
+    if (isArchive) {
+        title = 'Archives';
+        var isMonth = is_month();
+        var isYear = is_year();
+        if (isMonth) {
+            title += ': ' + page.year + '/' + page.month;
+        } else if (isYear) {
+            title += ': ' + page.year;
+        }
+    } else if (isCategory) {
+        title = 'Category: ' + page.category;
+    } else if (isTag) {
+        title = 'Tag: ' + page.tag;
+    }
+    %>
+    <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+
+    <% if (theme.rss){ %>
+        <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+    <% } %>
+    <% if (theme.favicon){ %>
+        <link rel="icon" href="img/favicon.png">
+    <% } %>
+
+    <%- css('/css/base.css') %>
+    <%- css('/css/main.css') %>
+    <%- css('/css/animate.css') %>
+    <%- js('/js/main.js') %>
+</head>

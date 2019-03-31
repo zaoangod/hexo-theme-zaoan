@@ -1,0 +1,27 @@
+<div class="nav-col--overlay"></div>
+<div class="nav-col--box">
+    <img src="/<%= theme.avatar %>" onclick="location.href='/';">
+    <a class="nav-col--box--title" href="/"><%= config.title %></a>
+    <h4 class="nav-col--box--subtitle"><%= config.subtitle %></h4>
+    <!-- 不是文章页面 -->
+    <% if (!is_post()){ %>
+        <!-- menu -->
+        <nav class="nav-col--box--menu">
+            <ul>
+                <% for (var i in theme.menu){ %>
+                    <li><a href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
+                <% } %>
+            </ul>
+        </nav>
+        <!-- social -->
+        <nav class="nav-col--box--social">
+            <% for (var i in theme.subnav){ %>
+                <a target="_blank" href="<%- url_for(theme.subnav[i]) %>">
+                    <img title="<%= i %>" src="/img/<%= i %>.svg">
+                </a>
+            <% } %>
+        </nav>
+    <% } else { %>
+        <%- partial('post/toc') %>
+    <% } %>
+</div>
